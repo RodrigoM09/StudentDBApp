@@ -1,5 +1,6 @@
 package studentdbapp;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Student {
@@ -8,9 +9,10 @@ public class Student {
     private String lastname;
     private int gradeYear;
     private String courses;
-    private int studentId;
-    private int cost = 600;
-    private int balance;
+    private String studentID;
+    private static int costOfCourse = 600;
+    private int tuitionBalance = 0;
+    private static int id = 1000;
 
     // Constructor: prompt user to enter students name and year
     public Student(){
@@ -24,11 +26,35 @@ public class Student {
         System.out.println("1 - Freshman\n2- Sophmore\n3 - Junior\n4 - Senior\nEnter student class level: ");
         this.gradeYear = scanner.nextInt();
         System.out.println(firstname + " " + lastname + " " + gradeYear);
+
+        setStudentID();
+
+        System.out.println(firstname + " " + lastname + " " + gradeYear + " " + studentID);
     }
     // Generate ID
-
+    private void setStudentID(){
+        //Grade Level + ID
+        id++;
+        this.studentID = gradeYear + "" + id;
+    }
     // Enroll in courses
+    public void enroll(){
+        //Get inside a loop, user hits 0
+        do {
+            System.out.print("Enter a course to enroll (Q to quit): ");
+            Scanner scanner = new Scanner(System.in);
+            String course = scanner.nextLine();
+            if (!Objects.equals(course, "Q")) {
+                courses = courses + "\n" + course;
+                tuitionBalance = tuitionBalance + costOfCourse;
+            }
+            else { break; }
+        } while (1 != 0);
 
+
+        System.out.println("Enrolled in: " + courses);
+        System.out.println("Tuition Balance: " + tuitionBalance);
+    }
     // View Balance
 
     // Pay Tuition
