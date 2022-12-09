@@ -16,9 +16,7 @@ public class StudentDBApp {
             students[n] = new Student();
             students[n].enroll();
             students[n].payTuition();
+            System.out.println(students[n].toString());
         }
-        System.out.println(students[0].toString());
-        System.out.println(students[1].toString());
-        System.out.println(students[2].toString());
     }
 }
